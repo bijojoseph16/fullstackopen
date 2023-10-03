@@ -3,14 +3,14 @@ sequenceDiagram
     participant browser
     participant server
 
-    browser -> server : POST https://studies.cs.helsinki.fi/exampleapp/new_note {note:hello}
+    browser ->> server : POST https://studies.cs.helsinki.fi/exampleapp/new_note {note:hello}
     activate server
     server -->> browser : 302 URL redriect
     deactivate server
     Note right of server: Server creates a new note and a timestamp and add it to the array of notes
     Note right of server: Server ask the browse to do a redirect to GET https://studies.cs.helsinki.fi/exampleapp/notes
 
-    browser -> server : GET https://studies.cs.helsinki.fi/exampleapp/notes
+    browser ->> server : GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     server -->> browser : HTML document 
     deactivate server
