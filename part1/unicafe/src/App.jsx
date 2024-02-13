@@ -1,11 +1,5 @@
 import { useState } from 'react'
 
-const Display = (props) => {
-  return (
-    <div> {props.text} {props.count} </div>
-  )
-}
-
 const Statistics = (props) => {
   const [good, bad, neutral] = props.stat
 
@@ -20,16 +14,32 @@ const Statistics = (props) => {
     return (
       <div> 
         <h1>Statistics</h1>
-        <Display text='Good' count={good}/>
-        <Display text='Neutral' count={neutral}/>
-        <Display text='Bad' count={bad}/>
-        <Display text='All' count={good + bad + neutral}/>
-        <Display text='Average' count={(good-bad)/(good+bad+neutral)}/>
-        <Display text='Positive' count={((good)/(good+bad+neutral))*100}/>
+        <table>
+          <StatisticsLine text="good" value = {good}/>
+          <StatisticsLine text="neutral" value = {neutral}/>
+          <StatisticsLine text="bad" value = {bad}/>
+          <StatisticsLine text="All" value = {good + bad + neutral}/>
+          <StatisticsLine text="Average" value = {(good-bad)/(good+bad+neutral)}/>
+          <StatisticsLine text="Positive" value = {((good)/(good+bad+neutral))*100}/>
+        </table>
+
       </div>
     )
   }
 
+}
+
+const StatisticsLine = (props) => {
+    return (
+      <>
+        <tbody>
+          <tr>
+            <td>{props.text}</td>
+            <td>{props.value}</td>
+          </tr>
+        </tbody>
+      </>
+    )
 }
 
 const Button = (props) => {
